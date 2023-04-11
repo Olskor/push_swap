@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tab_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:03:55 by jauffret          #+#    #+#             */
-/*   Updated: 2023/04/08 12:24:40 by jauffret         ###   ########.fr       */
+/*   Updated: 2023/04/10 12:39:57 by olskor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,22 @@ t_tab	ft_setuptab(char **src)
 	i = 1;
 	while (src[tab.size])
 		tab.size++;
+	if (ft_checkdigit(src[i]))
+		return (tab);
 	tab.a = ft_lstnew(ft_atoi(src[i]));
+	tab.b = 0;
 	i++;
 	while (src[i])
 	{
+		if (ft_checkdigit(src[i]))
+		{
+			freetab(&tab);
+			return (tab);
+		}
 		ft_lstadd_back(&tab.a, ft_lstnew(ft_atoi(src[i])));
 		i++;
 	}
-	tab.b = 0;
+	ft_showtab(tab.a, tab.b);
 	return (tab);
 }
 

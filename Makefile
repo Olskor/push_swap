@@ -19,7 +19,7 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 
-SRC_FILES	=	main instruction1 tab_handler instruction2 quick_sort
+SRC_FILES	=	main instruction1 tab_handler instruction2 quick_sort quick_sort2 quick_sort3 optimizer
 LIBS_FILES	=	libftprintf
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))

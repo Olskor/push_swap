@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:56:11 by jauffret          #+#    #+#             */
-/*   Updated: 2023/04/08 16:51:21 by jauffret         ###   ########.fr       */
+/*   Updated: 2023/04/10 11:24:30 by olskor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ typedef struct s_tab
 	int		size;
 }	t_tab;
 
+typedef struct s_rot
+{
+	int	ra;
+	int	rb;
+	int	bo;
+}	t_rot;
+
+int		ft_checkdigit(char *src);
 char	*ft_sa(t_tab *tab, char *str);
 char	*ft_sb(t_tab *tab, char *str);
 char	*ft_ss(t_tab *tab, char *str);
@@ -41,5 +49,12 @@ void	ft_showtab(t_list *a, t_list *b);
 t_tab	ft_setuptab(char **src);
 void	freetab(t_tab *tab);
 void	delint(int d);
+char	*ft_push2third(t_tab *tab, char *rslt, int min);
+int		lstmax(t_list *lst);
+int		lstmin(t_list *lst);
+int		lastgreatestpos(t_list *lst, int num);
+int		whoisthegreatest(t_list *lst, int num, int mem);
+int		objectpos(t_list *lst, int num);
+void	ft_optimise(char *rslt, int ra, int rb);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:50:44 by jauffret          #+#    #+#             */
-/*   Updated: 2023/04/08 12:33:57 by jauffret         ###   ########.fr       */
+/*   Updated: 2023/04/10 12:27:54 by olskor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,37 @@ void	ft_showtab(t_list *a, t_list *b)
 	}
 }
 
+int	ft_checkdigit(char *src)
+{
+	int	i;
+
+	i = 0;
+	while (src[i])
+	{
+		if (!ft_isdigit(src[i]) && src[i] != '-')
+			return (ft_printf("Error: %s is not a number\n", src));
+		i++;
+	}
+	return (0);
+}
+
+int ft_checktab(t_tab *tab)
+{
+	t_list	*mem;
+	int		t;
+
+	mem = tab->a;
+	t = 1;
+	while (mem)
+	{
+		if (mem->next)
+			if (mem->next->content < mem->content)
+				t = 0;
+		mem = mem->next;
+	}
+	return (t);
+}
+
 int	ft_solver(char **arg)
 {
 	t_tab	tab;
@@ -50,16 +81,18 @@ int	ft_solver(char **arg)
 
 	tab = ft_setuptab(arg);
 	if (!tab.a)
-		return (ft_printf(ERR1));
+		return (1);
 	if (tab.size < 2)
 	{
 		freetab(&tab);
 		return (ft_printf(ERR2));
 	}
+	if (ft_checktab(&tab))
+		return (0);
 	rslt = malloc(1);
 	rslt[0] = 0;
 	rslt = ft_qssolve(&tab, rslt);
-	ft_printf("%s", rslt);
+	ft_optimise(rslt, 0, 0);
 	free(rslt);
 	freetab(&tab);
 	return (0);

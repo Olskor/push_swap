@@ -6,7 +6,7 @@
 /*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 13:08:58 by jauffret          #+#    #+#             */
-/*   Updated: 2023/04/08 13:09:00 by jauffret         ###   ########.fr       */
+/*   Updated: 2023/04/11 15:58:19 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,12 +121,3 @@ char	*ft_pa(t_tab *tab, char *str)
 	}
 	return (str);
 }
-/*
-rra (reverse rotate a) : Décale d’une position vers le bas tous les élements de
-la pile a. Le dernier élément devient le premier.
-
-rrb (reverse rotate b) : Décale d’une position vers le bas tous les élements de
-la pile b. Le dernier élément devient le premier.
-
-rrr : rra et rrb en même temps
-*/

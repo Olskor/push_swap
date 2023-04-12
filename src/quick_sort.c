@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quick_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 12:34:08 by jauffret          #+#    #+#             */
-/*   Updated: 2023/04/10 12:29:32 by olskor           ###   ########.fr       */
+/*   Updated: 2023/04/11 15:41:09 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,23 +86,23 @@ char	*ft_pushtoa(t_tab *tab, char *rslt, int rotb)
 		rotb = rotb + ft_lstsize(tab->b);
 	rslt = ft_rotb(tab, rslt, rotb, rot);
 	rslt = ft_pa(tab, rslt);
-	if (tab->a->content < lstmax(tab->b))
-		rslt = ft_ra(tab, rslt);
-	else if (ft_lstlast(tab->a)->content > lstmax(tab->b)
-		&& ft_lstlast(tab->a)->content < tab->a->content)
-		rslt = ft_rra(tab, rslt);
 	return (rslt);
 }
 
 char	*ft_qssolve(t_tab *tab, char *rslt)
 {
-	while (ft_lstsize(tab->a) > 2)
+	if (ft_lstsize(tab->a) <= 2)
+	{
+		if (tab->a->content > tab->a->next->content)
+			rslt = ft_sa(tab, rslt);
+		return (rslt);
+	}
+	while (ft_lstsize(tab->a) > 3)
 	{
 		tab->size = (lstmax(tab->a) - lstmin(tab->a)) / 2;
 		rslt = ft_push2third(tab, rslt, lstmin(tab->a) - 1);
 	}
-	if (tab->a->content > lstmin(tab->a))
-		rslt = ft_sa(tab, rslt);
+	rslt = ft_sort3(tab, rslt);
 	while (ft_lstsize(tab->b) > 0)
 	{
 		rslt = ft_pushtoa(tab, rslt, 0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quick_sort2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:38:36 by olskor            #+#    #+#             */
-/*   Updated: 2023/04/10 12:36:30 by olskor           ###   ########.fr       */
+/*   Updated: 2023/04/11 14:46:00 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*ft_push2third(t_tab *tab, char *rslt, int min)
 	int	do_rb;
 
 	do_rb = 0;
-	while (1)
+	while (tab->a)
 	{
 		do_rb = ft_qsb(tab, (tab->size / 2) + min);
 		if (tab->a->content <= tab->size + min)

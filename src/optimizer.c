@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   optimizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:26:02 by olskor            #+#    #+#             */
-/*   Updated: 2023/04/09 19:02:18 by olskor           ###   ########.fr       */
+/*   Updated: 2023/04/11 12:49:50 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ t_rot	ft_detect2(char *str, t_rot rot)
 		ft_printf("rrb\n");
 		rot.rb++;
 	}
-	ft_printf("%s\n", str);
+	if (str[0] != 0)
+		ft_printf("%s\n", str);
 	return (rot);
 }
 
@@ -109,10 +110,9 @@ void	ft_optimise(char *rslt, int ra, int rb)
 	while (ret[i])
 	{
 		rot = ft_detect(ret[i], rot);
-		if (ra || rb)
-			ra = ra;
 		free(ret[i]);
 		i++;
 	}
+	rot = ft_detect("\0", rot);
 	free(ret);
 }

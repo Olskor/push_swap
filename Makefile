@@ -19,7 +19,7 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 
-SRC_FILES	=	main instruction1 tab_handler instruction2 quick_sort quick_sort2 quick_sort3 optimizer
+SRC_FILES	=	instruction1 tab_handler tab_handler2 checker2 instruction2 quick_sort quick_sort2 quick_sort3 optimizer
 LIBS_FILES	=	libftprintf
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
@@ -34,7 +34,8 @@ all:		whomadeit $(NAME)
 $(NAME):	$(OBJ)
 			@make -C $(FT_PRINTF) --no-print-directory
 			@cp ft_printf/libftprintf.a libs/libftprintf.a
-			@$(CC) $(CFLAGS) $(INCLUDE) $(OBJ) $(LIBS) -o $(NAME)
+			@$(CC) $(CFLAGS) $(INCLUDE) src/main.c $(OBJ) $(LIBS) -o $(NAME)
+			@$(CC) $(CFLAGS) $(INCLUDE) src/checker.c $(OBJ) $(LIBS) -o checker
 			@echo "$(GREEN)$(NAME) Compiled successfully$(DEF_COLOR)"
 
 nolib:		clean $(OBJ)
@@ -55,8 +56,8 @@ clean:
 			@echo "$(BLUE)$(NAME) object files cleaned!$(DEF_COLOR)"
 
 fclean:		clean
-			@$(RM) -f $(NAME)_client
-			@$(RM) -f $(NAME)_server
+			@$(RM) -f $(NAME)
+			@$(RM) -f checker
 			@$(RM) -f $(FT_PRINTF)/libftprintf.a
 			@$(RM) -f $(LIB)/libftprintf.a
 			@echo "$(CYAN)$(NAME) executable files cleaned!$(DEF_COLOR)"
